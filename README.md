@@ -1,6 +1,6 @@
 # kb-controls
 
-expose a polling object for (game) keybindings using [vkey](chrisdickinson/vkey) definitions.
+expose a polling object for (game) keybindings using [vkey](https://github.com/chrisdickinson/vkey/) definitions.
 
 ```javascript
 var kb = require('./index')
