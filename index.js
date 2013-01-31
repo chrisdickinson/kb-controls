@@ -2,16 +2,18 @@ var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
 
-module.exports = function(el, bindings) {
-  if(bindings === undefined) {
+module.exports = function(el, bindings, state) {
+  if(bindings === undefined || !el.ownerDocument) {
+    state = bindings
     bindings = el
     el = this.document.body
   }
 
   var ee = ever(el)
-    , state = {}
     , measured = {}
     , enabled = true
+
+  state = state || {}
 
   // always initialize the state.
   for(var key in bindings) {
