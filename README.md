@@ -26,7 +26,7 @@ raf(document.body).on('data', function(dt) {
 
 ### Why not events?
 
-Events are great! I love them. But when you're writing game logic, oftentimes you want frame event to drive the simulation -- and dealing with the keyboard as a separate evented interface can be troublesome in this regard.
+Events are great! I love them. But when you're writing game logic, oftentimes you want the frame event to drive the simulation -- and dealing with the keyboard as a separate evented interface can be troublesome in this regard.
 
 ## API
 
