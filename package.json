@@ -1,0 +1,28 @@
+{
+  "name": "kb-controls",
+  "version": "0.0.0",
+  "description": "present a polling interface for keyboard state given a binding object",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chrisdickinson/kb-controls.git"
+  },
+  "keywords": [
+    "keyboard",
+    "controls",
+    "polling",
+    "event"
+  ],
+  "author": "Chris Dickinson <chris@neversaw.us>",
+  "license": "MIT",
+  "dependencies": {
+    "vkey": "X.X.X",
+    "ever": "X.X.X"
+  },
+  "devDependencies": {
+    "raf": "0.0.1"
+  }
+}
