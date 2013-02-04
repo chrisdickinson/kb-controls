@@ -38,8 +38,17 @@ module.exports = function(el, bindings, state) {
 
   return state
 
+  function clear() {
+    // always initialize the state.
+    for(var key in bindings) {
+      state[bindings[key]] = 0
+      measured[key] = 1
+    }
+  }
+
   function enable_disable(on_or_off) {
     return function() {
+      clear()
       enabled = on_or_off
       return this
     }
@@ -63,6 +72,10 @@ module.exports = function(el, bindings, state) {
 
       if(binding) {
         state[binding] += on_or_off ? max(measured[key]--, 0) : -(measured[key] = 1)
+
+        if(!on_or_off && state[binding] < 0) {
+          state[binding] = 0
+        }
       }
     }
   }
