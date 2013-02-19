@@ -17,7 +17,10 @@ module.exports = function(el, bindings, state) {
 
   // always initialize the state.
   for(var key in bindings) {
-    if(bindings[key] === 'enabled' || bindings[key] === 'enable' || bindings[key] === 'disable') {
+    if(bindings[key] === 'enabled' ||
+       bindings[key] === 'enable' ||
+       bindings[key] === 'disable' ||
+       bindings[key] === 'destroy') {
       throw new Error(bindings[key]+' is reserved')
     }
     state[bindings[key]] = 0
@@ -35,7 +38,9 @@ module.exports = function(el, bindings, state) {
 
   state.enable = enable_disable(true)
   state.disable = enable_disable(false)
-
+  state.destroy = function() {
+    ee.removeAllListeners()
+  } 
   return state
 
   function clear() {

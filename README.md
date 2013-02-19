@@ -73,6 +73,10 @@ Returns whether or not the `ctl` is enabled.
 Disables the DOM listeners (without removing them). Keyboard and mouse events should work
 as normal while the `ctl` is disabled.
 
+#### ctl.destroy()
+
+Removes all DOM event listeners and renders the `ctl` inert.
+
 ## License
 
 MIT
