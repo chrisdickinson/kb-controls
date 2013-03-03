@@ -28,6 +28,8 @@ raf(document.body).on('data', function(dt) {
 
 Events are great! I love them. But when you're writing game logic, oftentimes you want the frame event to drive the simulation -- and dealing with the keyboard as a separate evented interface can be troublesome in this regard.
 
+There is actually one event that you you can subscribe to, see `ctl.events.on('change')` below for details.
+
 ## API
 
 #### kb = require('raf')
@@ -76,6 +78,10 @@ as normal while the `ctl` is disabled.
 #### ctl.destroy()
 
 Removes all DOM event listeners and renders the `ctl` inert.
+
+#### ctl.events.on('change', function(binding, onOff){})
+
+Emits every time a binding changes between `0` and `1`
 
 ## License
 
