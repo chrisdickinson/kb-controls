@@ -1,6 +1,7 @@
 var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
+  , EventEmitter = require('events').EventEmitter
 
 module.exports = function(el, bindings, state) {
   if(bindings === undefined || !el.ownerDocument) {
@@ -14,10 +15,13 @@ module.exports = function(el, bindings, state) {
     , enabled = true
 
   state = state || {}
+  
+  state.events = new EventEmitter()
 
   // always initialize the state.
   for(var key in bindings) {
-    if(bindings[key] === 'enabled' ||
+    if(bindings[key] === 'events' ||
+       bindings[key] === 'enabled' ||
        bindings[key] === 'enable' ||
        bindings[key] === 'disable' ||
        bindings[key] === 'destroy') {
@@ -81,6 +85,8 @@ module.exports = function(el, bindings, state) {
         if(!on_or_off && state[binding] < 0) {
           state[binding] = 0
         }
+        
+        state.events.emit('change', binding, state[binding])
       }
     }
   }
