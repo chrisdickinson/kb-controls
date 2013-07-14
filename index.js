@@ -62,7 +62,6 @@ module.exports = function(el, bindings, state) {
   function wrapped(fn) {
     return function(ev) {
       if(enabled) {
-        ev.preventDefault()
         fn(ev)
       } else {
         return
