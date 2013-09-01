@@ -3,13 +3,18 @@ var ever = require('ever')
   , max = Math.max
 
 module.exports = function(el, bindings, state) {
+  var root = null
   if(bindings === undefined || !el.ownerDocument) {
     state = bindings
     bindings = el
     el = this.document.body
+    try {
+      root = window.top.document.body
+    } catch(e){}
   }
 
   var ee = ever(el)
+    , re = root ? ever(root) : ee
     , measured = {}
     , enabled = true
 
@@ -27,8 +32,8 @@ module.exports = function(el, bindings, state) {
     measured[key] = 1
   }
 
-  ee.on('keyup', wrapped(onoff(kb, false)))
-  ee.on('keydown', wrapped(onoff(kb, true)))
+  re.on('keyup', wrapped(onoff(kb, false)))
+  re.on('keydown', wrapped(onoff(kb, true)))
   ee.on('mouseup', wrapped(onoff(mouse, false)))
   ee.on('mousedown', wrapped(onoff(mouse, true)))
 
@@ -39,8 +44,9 @@ module.exports = function(el, bindings, state) {
   state.enable = enable_disable(true)
   state.disable = enable_disable(false)
   state.destroy = function() {
+    re.removeAllListeners()
     ee.removeAllListeners()
-  } 
+  }
   return state
 
   function clear() {
