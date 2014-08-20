@@ -30,7 +30,7 @@ Events are great! I love them. But when you're writing game logic, oftentimes yo
 
 ## API
 
-#### kb = require('raf')
+#### kb = require('kb-controls')
 
 return the `kb` function.
 
